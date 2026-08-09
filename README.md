@@ -1,40 +1,18 @@
-# Gold Star Day V1 🌟
+# Gold Star Day V1.1 🌟
 
-A real first-version PWA prototype built around:
-- calendar-first progress
-- color-coded habit stars
-- daily habits + weekly routines
-- non-punitive Growth Days (+1% per day you show up)
+A mobile-first PWA update with:
+- real bottom tabs
+- customizable habit colors
+- daily / specific-day / whenever schedules
 - Bare Minimum Mode
-- a nameable Star Jar
-- The Cupboard with accessory unlocks
-- a Sticker Book
-- personal challenges that unlock stickers
-- saved local progress
-- PWA manifest + service worker
-- browser notification permission + test notification
+- redesigned Star Jar
+- jar dress-up
+- Sticker Book
+- stickers you can actually place on the jar
+- challenges that unlock stickers
+- calendar and progress views
 
-## Run it locally
+The current sticker symbols are intentionally temporary. The next art pass can replace them with a cohesive hand-drawn SVG/PNG sticker library without rebuilding the app.
 
-From this folder:
-
-```bash
-python3 -m http.server 8000
-```
-
-Then open:
-
-http://localhost:8000
-
-## iPhone / PWA note
-
-For proper Add to Home Screen behavior and reliable web app features, host this folder over HTTPS.
-
-## Notification note
-
-V1 stores preferred reminder times and can request notification permission / show a test notification.
-Reliable scheduled notifications while the app is fully closed require a hosted push backend. The service worker already contains a push handler for that next step.
-
-## Data
-
-V1 uses browser localStorage. There are no accounts, analytics, or cloud sync yet.
+## Install
+Replace the files in the root of your existing GitHub Pages repository with these files. GitHub Pages should redeploy automatically.

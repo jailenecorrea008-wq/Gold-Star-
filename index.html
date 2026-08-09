@@ -1,258 +1,72 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#F3E8D8">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="Gold Star Day">
-  <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css">
-  <title>Gold Star Day</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#fbf4e5"><meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="styles.css">
+<title>Gold Star Day</title>
 </head>
 <body>
-<div class="app-shell">
+<div class="app">
+<header><small>gentle habits, golden days</small><h1>gold star day</h1></header>
+<main>
+<section class="screen active" id="today">
+<h2>good morning ♡</h2>
+<div class="card growth"><span>today's growth</span><strong id="todayGrowth">+0%</strong><p>Little by little, big changes.</p></div>
+<label class="card bare">☆ Bare Minimum Mode <input id="bare" type="checkbox"></label>
+<div class="section-title"><b>today's habits</b><button id="addHabit">+ add</button></div>
+<div id="habitList"></div>
+<p class="pep">♡ one tiny thing still counts ♡</p>
+</section>
 
-  <header class="topbar">
-    <div>
-      <div class="eyebrow">YOUR GENTLE ROUTINE</div>
-      <h1>Gold Star Day</h1>
-    </div>
-    <button class="icon-button" id="settingsToggle" aria-label="Open settings">⚙︎</button>
-  </header>
+<section class="screen" id="calendar">
+<div class="head"><button id="prev">‹</button><h2 id="monthTitle"></h2><button id="next">›</button></div>
+<div class="card calendar"><div class="week"><b>S</b><b>M</b><b>T</b><b>W</b><b>T</b><b>F</b><b>S</b></div><div id="calendarGrid" class="grid"></div></div>
+<div class="card"><strong id="monthGrowth">+0% growth this month</strong><p>No punishment for missed days. We only count showing up.</p></div>
+</section>
 
-  <section class="hero-grid">
-    <article class="panel calendar-panel">
-      <div class="panel-head">
-        <div>
-          <div class="eyebrow">THIS MONTH</div>
-          <h2 id="monthTitle">August 2026</h2>
-        </div>
-        <div class="growth-block">
-          <strong id="growthValue">+0%</strong>
-          <span>growth days</span>
-        </div>
-      </div>
+<section class="screen" id="jar">
+<div class="head"><h2 id="jarName">Gertrude</h2><button id="renameJar">rename</button></div>
+<div class="garden">
+<span class="flora left">✿<br>❀</span><span class="flora right">❀<br>✿</span>
+<span class="caterpillar">●●●●</span><span class="ladybug">●</span>
+<div class="jar" id="jarDrop"><div class="lid" id="jarLid"></div><div class="bow" id="jarBow">୨୧</div>
+<div class="glass"><div id="jarStars" class="jar-stars"></div><div id="placedStickers"></div></div></div>
+</div>
+<div class="jar-count"><strong id="starTotal">0</strong><small>stars collected</small></div>
+<div class="two"><button id="dressBtn">dress up</button><button id="stickersBtn">sticker book</button></div>
+<p class="hint">Pick an unlocked sticker, then tap the jar to place it. Tap a sticker on the jar to remove it.</p>
+</section>
 
-      <div class="calendar-wrap">
-        <div class="calendar-topline"></div>
-        <div class="calendar-controls">
-          <button id="prevMonth" class="small-btn">‹</button>
-          <span id="monthMini"></span>
-          <button id="nextMonth" class="small-btn">›</button>
-        </div>
-        <div class="weekdays">
-          <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>
-        </div>
-        <div class="calendar-grid" id="calendarGrid"></div>
-      </div>
+<section class="screen" id="progress">
+<h2>your progress ❀</h2>
+<div class="two"><div class="card stat"><small>growth days</small><strong id="growthDays">0</strong></div><div class="card stat"><small>little wins</small><strong id="progressStars">0</strong></div></div>
+<div class="card"><h3>habit progress</h3><div id="bars"></div></div>
+<div class="card"><div class="section-title"><b>challenges</b><button id="addChallenge">+ add</button></div><div id="challenges"></div></div>
+</section>
 
-      <div class="legend">
-        <span><i class="dot hygiene"></i> Hygiene</span>
-        <span><i class="dot hydration"></i> Hydration</span>
-        <span><i class="dot nourishment"></i> Nourishment</span>
-        <span><i class="dot home"></i> Home</span>
-        <span><i class="dot selfcare"></i> Self-care</span>
-        <span><i class="dot movement"></i> Movement</span>
-      </div>
-    </article>
-
-    <article class="panel today-summary">
-      <div class="eyebrow" id="todayLabel">TODAY</div>
-      <h2>Keep it small.</h2>
-      <p id="supportCopy">You do not need to finish everything. One thing is literally the assignment.</p>
-
-      <div class="today-numbers">
-        <div><strong id="todayStars">0</strong><span>stars today</span></div>
-        <div><strong id="monthStars">0</strong><span>stars this month</span></div>
-      </div>
-
-      <button id="bareMinimumBtn" class="wide-button secondary">Bare Minimum Mode</button>
-    </article>
-  </section>
-
-  <section class="panel today-panel">
-    <div class="panel-head">
-      <div>
-        <div class="eyebrow">TODAY'S LITTLE WINS</div>
-        <h2 id="todayDateTitle">Sunday, August 9</h2>
-      </div>
-      <button id="addHabitBtn" class="text-button">+ Add habit</button>
-    </div>
-
-    <div class="segmented">
-      <button class="segment active" data-filter="all">All</button>
-      <button class="segment" data-filter="daily">Daily</button>
-      <button class="segment" data-filter="weekly">Routine</button>
-    </div>
-
-    <div class="habit-list" id="habitList"></div>
-  </section>
-
-  <section class="jar-progress-grid">
-    <article class="panel jar-panel">
-      <div class="panel-head">
-        <div>
-          <div class="eyebrow">YOUR STAR JAR</div>
-          <h2 id="jarTitle">Name your jar</h2>
-        </div>
-        <button id="renameJarBtn" class="text-button">Rename</button>
-      </div>
-
-      <div class="jar-stage">
-        <div class="jar-accessory" id="jarAccessory">🎀</div>
-        <div class="jar">
-          <div class="jar-lid"></div>
-          <div class="jar-stars" id="jarStars"></div>
-        </div>
-      </div>
-
-      <div class="jar-meta">
-        <strong id="lifetimeStars">0 little wins</strong>
-        <span>Your stars stay. Even when you disappear for a while.</span>
-      </div>
-
-      <div class="jar-actions">
-        <button class="wide-button" id="cupboardBtn">The Cupboard</button>
-        <button class="wide-button secondary" id="stickerBookBtn">Sticker Book</button>
-      </div>
-    </article>
-
-    <article class="panel challenge-panel">
-      <div class="panel-head">
-        <div>
-          <div class="eyebrow">PERSONAL CHALLENGES</div>
-          <h2>Something worth a sticker</h2>
-        </div>
-        <button id="addChallengeBtn" class="text-button">+ Add</button>
-      </div>
-      <div id="challengeList" class="challenge-list"></div>
-    </article>
-  </section>
-
-  <section class="panel progress-panel">
-    <div class="panel-head">
-      <div>
-        <div class="eyebrow">PROGRESS</div>
-        <h2>Proof you showed up</h2>
-      </div>
-      <span class="mini-pill" id="showingUpDays">0 growth days</span>
-    </div>
-
-    <div class="stats-grid">
-      <div class="stat-card"><span>Lifetime stars</span><strong id="statLifetime">0</strong></div>
-      <div class="stat-card"><span>Growth days</span><strong id="statGrowth">0</strong></div>
-      <div class="stat-card"><span>Top category</span><strong id="statTopCategory">—</strong></div>
-      <div class="stat-card"><span>Stickers unlocked</span><strong id="statStickers">0</strong></div>
-    </div>
-  </section>
-
-  <section class="panel settings-panel" id="settingsPanel">
-    <div class="panel-head">
-      <div>
-        <div class="eyebrow">SETTINGS</div>
-        <h2>Make it yours</h2>
-      </div>
-    </div>
-
-    <div class="settings-grid">
-      <label>Reminder tone
-        <select id="toneSelect">
-          <option value="gentle">Gentle</option>
-          <option value="sassy">Sassy</option>
-          <option value="minimal">Minimal</option>
-        </select>
-      </label>
-      <label>Morning reminder
-        <input type="time" id="morningTime" value="09:00">
-      </label>
-      <label>Evening reminder
-        <input type="time" id="eveningTime" value="19:00">
-      </label>
-      <button class="wide-button" id="notifyBtn">Enable test notification</button>
-    </div>
-    <p class="settings-note">Reliable scheduled notifications while the app is closed come in the hosted push-notification step. V1 stores your preferred times now.</p>
-  </section>
-
-  <footer>
-    <p>Welcome back. Your stars are still here.</p>
-  </footer>
+<section class="screen" id="settings">
+<h2>settings ❀</h2><h3>habits</h3>
+<div class="card menu"><button id="manageHabits">Manage Habits <small>delete habits</small></button><button id="starColors">Star Colors <small>pick any color</small></button></div>
+<h3>reminders</h3><div class="card menu"><label>Morning <input id="morning" type="time"></label><label>Evening <input id="evening" type="time"></label><button id="testNotification">Test notification <small>scheduled push is a later upgrade</small></button></div>
+</section>
+</main>
+<nav>
+<button class="active" data-tab="today">⌂<small>today</small></button><button data-tab="calendar">▣<small>calendar</small></button>
+<button data-tab="jar">☆<small>jar</small></button><button data-tab="progress">▥<small>progress</small></button><button data-tab="settings">⚙<small>settings</small></button>
+</nav>
 </div>
 
-<!-- Habit modal -->
-<div class="modal" id="habitModal">
-  <div class="sheet">
-    <div class="sheet-head"><h2>Add a habit</h2><button class="close-btn" data-close="habitModal">×</button></div>
-    <label>Name<input id="habitName" placeholder="Example: Brush my teeth"></label>
-    <label>Hard-day version<input id="habitTiny" placeholder="Example: Brush for 30 seconds"></label>
-    <label>Category
-      <select id="habitCategory">
-        <option value="hygiene">Hygiene</option>
-        <option value="hydration">Hydration</option>
-        <option value="nourishment">Nourishment</option>
-        <option value="home">Home</option>
-        <option value="selfcare">Self-care</option>
-        <option value="movement">Movement</option>
-      </select>
-    </label>
-    <label>Schedule
-      <select id="habitSchedule">
-        <option value="daily">Every day</option>
-        <option value="0">Sunday</option><option value="1">Monday</option><option value="2">Tuesday</option>
-        <option value="3">Wednesday</option><option value="4">Thursday</option><option value="5">Friday</option><option value="6">Saturday</option>
-      </select>
-    </label>
-    <div class="sheet-actions"><button class="wide-button secondary" data-close="habitModal">Cancel</button><button class="wide-button" id="saveHabit">Add habit</button></div>
-  </div>
-</div>
+<div class="modal" id="habitModal"><div class="sheet"><button class="close">×</button><h2>create a habit</h2>
+<label>habit name<input id="habitName" placeholder="morning stretch"></label>
+<label>hard-day version<input id="habitTiny" placeholder="stretch for one minute"></label>
+<label>star color<div id="colorPicker" class="picker"></div></label>
+<label>when?<select id="schedule"><option value="daily">every day</option><option value="specific">specific days</option><option value="anytime">whenever</option></select></label>
+<div id="dayPicker" class="day-picker hidden"></div><button class="primary" id="saveHabit">save habit</button></div></div>
 
-<!-- Jar modal -->
-<div class="modal" id="jarModal">
-  <div class="sheet">
-    <div class="sheet-head"><h2>Name your Star Jar</h2><button class="close-btn" data-close="jarModal">×</button></div>
-    <label>Jar name<input id="jarNameInput" placeholder="Gertrude"></label>
-    <div class="sheet-actions"><button class="wide-button secondary" data-close="jarModal">Cancel</button><button class="wide-button" id="saveJarName">Save</button></div>
-  </div>
-</div>
-
-<!-- Cupboard modal -->
-<div class="modal" id="cupboardModal">
-  <div class="sheet">
-    <div class="sheet-head"><h2>The Cupboard</h2><button class="close-btn" data-close="cupboardModal">×</button></div>
-    <p class="sheet-copy">Accessories unlock with lifetime stars. No deadlines. No store. No weird coins.</p>
-    <div class="unlock-grid" id="cupboardGrid"></div>
-  </div>
-</div>
-
-<!-- Sticker modal -->
-<div class="modal" id="stickerModal">
-  <div class="sheet">
-    <div class="sheet-head"><h2>Sticker Book</h2><button class="close-btn" data-close="stickerModal">×</button></div>
-    <p class="sheet-copy">Stars are everyday effort. Stickers are the bigger things you did.</p>
-    <div class="unlock-grid" id="stickerGrid"></div>
-  </div>
-</div>
-
-<!-- Challenge modal -->
-<div class="modal" id="challengeModal">
-  <div class="sheet">
-    <div class="sheet-head"><h2>Add a challenge</h2><button class="close-btn" data-close="challengeModal">×</button></div>
-    <label>Challenge<input id="challengeName" placeholder="Read 10 books this month"></label>
-    <label>Goal<input type="number" min="1" max="999" id="challengeGoal" value="10"></label>
-    <label>Reward sticker
-      <select id="challengeSticker">
-        <option value="📚">Bookworm 📚</option>
-        <option value="🍳">Kitchen Era 🍳</option>
-        <option value="🌤️">Outside Girl 🌤️</option>
-        <option value="🎨">Creative Brain 🎨</option>
-        <option value="💪">Strong Girl 💪</option>
-        <option value="🎬">Movie Club 🎬</option>
-      </select>
-    </label>
-    <div class="sheet-actions"><button class="wide-button secondary" data-close="challengeModal">Cancel</button><button class="wide-button" id="saveChallenge">Create challenge</button></div>
-  </div>
-</div>
-
-<script src="app.js"></script>
-</body>
-</html>
+<div class="modal" id="stickerModal"><div class="sheet"><button class="close">×</button><h2>sticker book</h2><p>Sticker art is intentionally replaceable so we can swap these for real hand-drawn assets next.</p><div id="stickerGrid" class="sticker-grid"></div></div></div>
+<div class="modal" id="dressModal"><div class="sheet"><button class="close">×</button><h2>dress up Gertrude</h2><h3>lid</h3><div id="lidGrid" class="options"></div><h3>bow</h3><div id="bowGrid" class="options"></div></div></div>
+<div class="modal" id="renameModal"><div class="sheet"><button class="close">×</button><h2>name your jar</h2><input id="jarNameInput"><button class="primary" id="saveJarName">save</button></div></div>
+<div class="modal" id="challengeModal"><div class="sheet"><button class="close">×</button><h2>new challenge</h2><input id="challengeName" placeholder="read 10 books"><input id="challengeGoal" type="number" min="1" value="10"><button class="primary" id="saveChallenge">create</button></div></div>
+<div class="modal" id="manageModal"><div class="sheet"><button class="close">×</button><h2 id="manageTitle">manage habits</h2><div id="manageList"></div></div></div>
+<script src="app.js"></script></body></html>
